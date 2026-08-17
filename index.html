@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jiayan Gong - Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f0f11; color: #ececec; line-height: 1.6; padding: 2rem; }
+    header { max-width: 900px; margin: 0 auto 3rem; text-align: center; }
+    h1 { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
+    p.subtitle { font-size: 1.1rem; color: #a0a0a0; }
+    .socials { margin-top: 1rem; }
+    .socials a { color: #8a8a8a; margin: 0 10px; text-decoration: none; transition: color 0.2s; }
+    .socials a:hover { color: #fff; }
+    
+    /* 作品网格布局 */
+    .portfolio-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card { background: #1a1a1e; border-radius: 12px; overflow: hidden; border: 1px solid #2a2a30; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-4px); }
+    .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .card-content { padding: 1.2rem; }
+    .card-title { font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; }
+    .card-desc { font-size: 0.9rem; color: #888; }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部个人名片 -->
+  <header>
+    <h1>Jiayan Gong</h1>
+    <p class="subtitle">Game Producer / Freelance Illustrator</p>
+    <div class="socials">
+      <a href="mailto:your_email@domain.com">Email</a> •
+      <a href="https://artstation.com" target="_blank">ArtStation</a> •
+      <a href="https://github.com/taobuliaoke" target="_blank">GitHub</a>
+    </div>
+  </header>
+
+  <!-- 作品画廊区 -->
+  <main class="portfolio-grid">
+    <!-- 作品卡片 1 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/600x400" alt="项目封面">
+      <div class="card-content">
+        <h2 class="card-title">游戏项目 / 作品名称 1</h2>
+        <p class="card-desc">一句话介绍这个项目的亮点、你在其中的职责或制作技术。</p>
+      </div>
+    </div>
+
+    <!-- 作品卡片 2 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/600x400" alt="项目封面">
+      <div class="card-content">
+        <h2 class="card-title">插画 / 概念设计 2</h2>
+        <p class="card-desc">一句话介绍画作主题或作品风格。</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
