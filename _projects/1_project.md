@@ -1,16 +1,14 @@
 ---
 layout: page
-title: project 1
-description: with background image
+title: 蛾蝶变（Moth-butterfly Metamorphosis）
+description: a 2D story-driven narrative game
 img: assets/img/12.jpg
 importance: 1
-category: work
+category: Games
 related_publications: true
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+A side-scrolling story-driven game built in RPG Maker MV with light puzzle mechanics. Set in the urban-rural fringe of China circa the 2010s, this narrative title weaves sci-fi elements into its core story. Players step into the shoes of a young girl on the brink of entering junior high school, and embark on a journey to uncover the truth as the world around her grows increasingly uncanny and unsettling.
 
 To give your project a background in the portfolio page, just add the img tag to the front matter like so:
 
