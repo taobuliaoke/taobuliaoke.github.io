@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://taobuliaoke.github.io/sitemap.xml
