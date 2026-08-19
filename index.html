@@ -7,13 +7,85 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f0f11; color: #ececec; line-height: 1.6; padding: 2rem; }
-    header { max-width: 900px; margin: 0 auto 3rem; text-align: center; }
+    
+    header { max-width: 900px; margin: 0 auto 2rem; text-align: center; }
     h1 { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
     p.subtitle { font-size: 1.1rem; color: #a0a0a0; }
     .socials { margin-top: 1rem; }
     .socials a { color: #8a8a8a; margin: 0 10px; text-decoration: none; transition: color 0.2s; }
     .socials a:hover { color: #fff; }
-    
+
+    /* 新增：个人简介与照片区域样式 */
+    .profile-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      display: flex;
+      gap: 1.5rem;
+      background: #1a1a1e;
+      border: 1px solid #2a2a30;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    /* 红色区域：个人简介文字 */
+    .bio-text {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .bio-text h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .bio-text p {
+      font-size: 0.95rem;
+      color: #b0b0b0;
+      line-height: 1.7;
+    }
+
+    /* 右侧区域：包裹照片和照片信息 */
+    .profile-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      min-width: 220px;
+    }
+
+    /* 绿色区域：照片 */
+    .photo-box {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #25252b00;
+    }
+    .photo-box img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 蓝色区域：照片信息 */
+    .photo-info {
+    font-size: 0.85rem;
+    color: #888;          /* 文字颜色，可按需修改 */
+    text-align: center;   /* 居中对齐 */
+    margin-top: 0.4rem;   /* 与上方图片的间距 */
+    }
+
+    /* 移动端响应式兼容 */
+    @media (max-width: 640px) {
+      .profile-section {
+        flex-direction: column-reverse;
+      }
+      .profile-side {
+        width: 100%;
+      }
+    }
+
     /* 作品网格布局 */
     .portfolio-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .card { background: #1a1a1e; border-radius: 12px; overflow: hidden; border: 1px solid #2a2a30; transition: transform 0.2s; }
@@ -22,28 +94,175 @@
     .card-content { padding: 1.2rem; }
     .card-title { font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; }
     .card-desc { font-size: 0.9rem; color: #888; }
+
+      /* 标签外层容器 */
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* 高亮标签样式 */
+    .highlight-tag {
+      background: rgba(77, 166, 255, 0.1); /* 浅蓝色半透明背景 */
+      color: #4da6ff;                      /* 亮蓝色文字 */
+      border: 1px solid rgba(77, 166, 255, 0.4); /* 亮蓝色边框 */
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;                 /* 圆角胶囊形状 */
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 8px rgba(77, 166, 255, 0.15); /* 微弱发光效果 */
+      transition: all 0.2s ease;
+    }
+
+    /* 鼠标悬停时的动态反馈 */
+    .highlight-tag:hover {
+      background: #4da6ff;
+      color: #0f0f11;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(77, 166, 255, 0.3);
+    }
+
+     /* 我能做什么 区块容器 */
+    .services-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+
+    /* 技能卡片网格 */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* 单个技能卡片 */
+    .service-card {
+      background: #1a1a1e;
+      border: 1px solid #2a2a30;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: #4da6ff;
+    }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-title {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: #999;
+      line-height: 1.6;
+    }
   </style>
+  
 </head>
 <body>
 
   <!-- 顶部个人名片 -->
   <header>
-    <h1>Jiayan Gong</h1>
+    <h1>Tox</h1>
     <p class="subtitle">Game Producer / Freelance Illustrator</p>
     <div class="socials">
-      <a href="contact.html">Contact</a> •
-      <a href="https://artstation.com" target="_blank">ArtStation</a> •
+      <a href="contact.html">Email / Contact</a> •
+      <a href="SocialMedia.html" target="_blank">Social Media</a> •
       <a href="https://github.com/taobuliaoke" target="_blank">GitHub</a>
     </div>
   </header>
 
+  <!-- 中间新增区域：个人简介 + 照片及信息 -->
+  <section class="profile-section">
+    <!-- 红色区域：个人简介文字 -->
+    <div class="bio-text">
+      <h2>About Me</h2>
+      <!-- 标签展示区 -->
+   <div class="tag-container">
+      <span class="highlight-tag">Indie Game Producer/Developer</span>
+      <span class="highlight-tag">Printmaking Background</span>
+      <span class="highlight-tag">Chinese Local Narrative</span>
+      <span class="highlight-tag">Light Puzzle Design</span>
+      <span class="highlight-tag">Godot Developer</span>
+   </div>
+      <p>
+        Born in 2001, I graduated from the Printmaking Program at Sichuan Fine Arts Institute in 2014. As of 2026, I am based in Kunming, Yunnan, where I work as a game producer and create indie games with my partner.
+      </p>
+    </div>
+
+    <!-- 右侧两块结合（绿色照片 + 蓝色照片信息） -->
+    <div class="profile-side">
+      <!-- 绿色区域：个人照片 -->
+      <div class="photo-box">
+        <img src="assets/img/avatar.jpg" alt="Tox照片">
+      </div>
+      <!-- 蓝色区域：照片信息/备注 -->
+      <div class="photo-info">
+        📍 G-Fusion Game Fest 2026 Shenzhen
+      </div>
+    </div>
+  </section>
+<!-- 新增：我能做什么 (What I Can Do) 区块 -->
+<section class="services-section">
+  <h2 class="section-title">What I Can Do </h2>
+  
+  <div class="services-grid">
+    
+    <!-- 模块 1：游戏制作 / 策划 -->
+    <div class="service-card">
+      <div class="service-icon">🎮</div>
+      <h3 class="service-title">Game Design & Producing</h3>
+      <p class="service-desc">
+       Full-cycle indie game development and project execution with Godot Engine, including gameplay mechanics design, level construction, project scheduling, and cross-functional team communication and collaboration.
+      </p>
+    </div>
+
+    <!-- 模块 2：视觉与插画 -->
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3 class="service-title">Visual & Art Concept</h3>
+      <p class="service-desc">
+        Leveraging a fine arts background from a top art academy, I provide distinctive art direction and stylization, 2D concept design, and character and environment illustration for game projects.
+      </p>
+    </div>
+
+    <!-- 模块 3：本土化叙事与世界观 -->
+    <div class="service-card">
+      <div class="service-icon">📜</div>
+      <h3 class="service-title">Local Narrative Design</h3>
+      <p class="service-desc">
+       Dedicated to humanistic narratives rooted in Chinese local culture, she specializes in integrating traditional cultural elements with modern game interactivity and seamlessly blending tradition and contemporary sensibilities. Her creative practice centers on the gamified representation and artistic adaptation of lived experiences in modern China.
+      </p>
+    </div>
+
+  </div>
+</section>
   <!-- 作品画廊区 -->
   <main class="portfolio-grid">
     <!-- 作品卡片 1 -->
     <div class="card">
       <img src="https://via.placeholder.com/600x400" alt="项目封面">
       <div class="card-content">
-        <h2 class="card-title">游戏项目 / 作品名称 1</h2>
+        <h2 class="card-title">游戏项目 / 蛾蝶变</h2>
         <p class="card-desc">一句话介绍这个项目的亮点、你在其中的职责或制作技术。</p>
       </div>
     </div>
@@ -52,7 +271,7 @@
     <div class="card">
       <img src="https://via.placeholder.com/600x400" alt="项目封面">
       <div class="card-content">
-        <h2 class="card-title">插画 / 概念设计 2</h2>
+        <h2 class="card-title">游戏项目 / 荧惑仙</h2>
         <p class="card-desc">一句话介绍画作主题或作品风格。</p>
       </div>
     </div>
