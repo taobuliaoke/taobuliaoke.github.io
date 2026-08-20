@@ -15,16 +15,45 @@
     .socials a { color: #8a8a8a; margin: 0 10px; text-decoration: none; transition: color 0.2s; }
     .socials a:hover { color: #fff; }
 
-    /* 个人简介与照片区域样式 */
-    .profile-section {
+    /* 通用板块标题与副标题样式 */
+    .section-title {
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      text-align: left;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 1.5rem;
+    }
+
+    .sub-heading {
+      font-size: 0.8rem;
+      color: #888;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ----------------------------------------------------
+       个人简介与照片区域
+    ---------------------------------------------------- */
+    .about-section {
       max-width: 900px;
       margin: 0 auto 3rem;
+    }
+
+    .profile-section {
       display: flex;
       gap: 1.5rem;
       background: #1a1a1e;
       border: 1px solid #2a2a30;
       border-radius: 12px;
       padding: 1.5rem;
+      margin-top: 1rem; /* 增加与外部标题的间距 */
     }
 
     .bio-text {
@@ -33,11 +62,7 @@
       flex-direction: column;
       justify-content: center;
     }
-    .bio-text h2 {
-      font-size: 1.4rem;
-      color: #fff;
-      margin-bottom: 0.8rem;
-    }
+    
     .bio-text p {
       font-size: 0.95rem;
       color: #b0b0b0;
@@ -105,28 +130,6 @@
       margin: 0 auto 3rem;
     }
 
-    .section-title {
-      font-size: 1.6rem;
-      color: #fff;
-      margin-bottom: 0.3rem;
-      text-align: left;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: #888;
-      margin-bottom: 1.5rem;
-    }
-
-    .sub-heading {
-      font-size: 0.8rem;
-      color: #888;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -164,7 +167,7 @@
     }
 
     /* ----------------------------------------------------
-       新增/改动：往期作品回顾（仿图示横向重点项目卡片）
+       往期作品回顾 (Portfolio Showcase)
     ---------------------------------------------------- */
     .portfolio-section {
       max-width: 900px;
@@ -245,7 +248,7 @@
       font-weight: 600;
     }
     .status-in-progress {
-      background: rgba(77, 166, 255, 0.15);
+      background: #4da6ff26;
       color: #4da6ff;
       border: 1px solid rgba(77, 166, 255, 0.3);
     }
@@ -261,7 +264,12 @@
       font-weight: 700;
       margin-bottom: 0.6rem;
     }
-
+    .project-title-EN {
+      font-size: 1.6rem;
+      color: #fcfcfc;
+      font-weight: 650;
+      margin-bottom: 0.6rem;
+    }
     .project-desc {
       font-size: 0.9rem;
       color: #aaa;
@@ -314,7 +322,7 @@
     .btn-detail {
       display: inline-block;
       align-self: flex-start;
-      background: #e84a5f;
+      background: #4000ff;
       color: #fff;
       text-decoration: none;
       padding: 0.6rem 1.4rem;
@@ -326,7 +334,7 @@
     }
 
     .btn-detail:hover {
-      background: #ff5e74;
+      background: #7da000;
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(232, 74, 95, 0.5);
     }
@@ -363,27 +371,29 @@
   </header>
 
   <!-- 中间区域：个人简介 + 照片 -->
-  <section class="profile-section">
-    <div class="bio-text">
-      <h2>About Me</h2>
-      <div class="tag-container">
-        <span class="highlight-tag">Indie Game Producer/Developer</span>
-        <span class="highlight-tag">Printmaking Background</span>
-        <span class="highlight-tag">Chinese Local Narrative</span>
-        <span class="highlight-tag">Light Puzzle Design</span>
-        <span class="highlight-tag">Godot Developer</span>
+  <section class="about-section">
+    <h2 class="section-title">About Me</h2>
+    <div class="profile-section">
+      <div class="bio-text">
+        <div class="tag-container">
+          <span class="highlight-tag">Indie Game Producer/Developer</span>
+          <span class="highlight-tag">Printmaking Background</span>
+          <span class="highlight-tag">Chinese Local Narrative</span>
+          <span class="highlight-tag">Light Puzzle Design</span>
+          <span class="highlight-tag">Godot Developer</span>
+        </div>
+        <p>
+          Born in 2001, I graduated from the Printmaking Program at Sichuan Fine Arts Institute in 2014. As of 2026, I am based in Kunming, Yunnan, where I work as a game producer and create indie games with my partner.
+        </p>
       </div>
-      <p>
-        Born in 2001, I graduated from the Printmaking Program at Sichuan Fine Arts Institute in 2014. As of 2026, I am based in Kunming, Yunnan, where I work as a game producer and create indie games with my partner.
-      </p>
-    </div>
 
-    <div class="profile-side">
-      <div class="photo-box">
-        <img src="assets/img/avatar.jpg" alt="Tox照片">
-      </div>
-      <div class="photo-info">
-        📍 G-Fusion Game Fest 2026 Shenzhen
+      <div class="profile-side">
+        <div class="photo-box">
+          <img src="assets/img/avatar.jpg" alt="Tox照片">
+        </div>
+        <div class="photo-info">
+          📍 G-Fusion Game Fest 2026 Shenzhen
+        </div>
       </div>
     </div>
   </section>
@@ -420,10 +430,10 @@
   </section>
 
   <!-- ----------------------------------------------------
-       改动：往期作品回顾 (Portfolio Showcase)
+       往期作品回顾 (Portfolio Showcase)
   ---------------------------------------------------- -->
   <section class="portfolio-section">
-    <h2 class="section-title">SELECTED WORKS</h2>
+    <h2 class="section-title">Projects</h2>
     <p class="section-subtitle">These projects collectively showcase my competencies in game production, art design, narrative design, and game engine development.</p>
 
     <div class="project-list">
@@ -432,7 +442,6 @@
       <article class="project-card">
         <!-- 左侧：视频外链嵌入 -->
         <div class="project-media">
-          <!-- 替换为你的 Bilibili 嵌入代码或视频 iframe 地址 -->
           <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116793146345655&bvid=BV1np7K6YETz&cid=39313999923&p=1" 
           scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
         </div>
@@ -446,44 +455,42 @@
             </div>
 
             <h3 class="project-title">荧惑仙</h3>
+            <h3 class="project-title-EN">YingHuoXian: The Mars Wraith</h3>
             <p class="project-desc">
-              一款融合中国民俗元素与轻度解谜机制的 2D 动作叙事游戏原型。围绕特色玩法机制与情感化叙事展开，构建具备独特视觉语言的沉浸体验。
+              A Godot‑built game prototype in the vein of The Case of the Golden Idol, blending a Late‑Qing historical setting with sci‑fi and lesbian narrative themes.
             </p>
 
             <div class="project-details-grid">
               <div class="detail-row">
-                <span class="detail-label">职责</span>
-                <span class="detail-value">游戏制作人／玩法与叙事设计／ Godot 系统实现</span>
+                <span class="detail-label">Role</span>
+                <span class="detail-value">Game Producer/Gameplay & Narrative Designer/Godot Systems Developer</span>
               </div>
               <div class="detail-row">
-                <span class="detail-label">工具</span>
+                <span class="detail-label">Tools</span>
                 <span class="detail-value">Godot Engine、Photoshop、Procreate、Blender</span>
               </div>
             </div>
 
             <div class="project-tags">
               <span class="p-tag">Godot</span>
-              <span class="p-tag">叙事设计</span>
-              <span class="p-tag">类金偶像谜案</span>
-              <span class="p-tag">2D 美术</span>
-              <span class="p-tag">晚清历史</span>
-              <span class="p-tag">科幻</span>
+              <span class="p-tag">Narrative Design</span>
+              <span class="p-tag">Golden Idol-Inspired</span>
+              <span class="p-tag">2D Art</span>
+              <span class="p-tag">Late Qing Dynasty History</span>
+              <span class="p-tag">Sci-Fi</span>
             </div>
           </div>
 
-          <!-- 按钮：跳转到具体子页面 -->
-          <a href="project-ediebian.html" class="btn-detail">项目详情</a>
+          <a href="Project_Details_yhx.html" class="btn-detail">Project Details</a>
         </div>
       </article>
 
       <!-- 项目 2：没有视频外链，放图片示例 -->
       <article class="project-card">
-        <!-- 左侧：图片外链/本地图片 -->
         <div class="project-media">
-          <img src="assets/img/yinghuoxian.jpg" alt="游戏项目 / 荧惑仙">
+          <img src="assets/img/yinghuoxian.jpg" alt="游戏项目 / 蛾蝶变">
         </div>
 
-        <!-- 右侧：项目信息 -->
         <div class="project-info">
           <div>
             <div class="project-meta-top">
@@ -515,7 +522,6 @@
             </div>
           </div>
 
-          <!-- 按钮：跳转到具体子页面 -->
           <a href="project-yinghuoxian.html" class="btn-detail">项目详情</a>
         </div>
       </article>

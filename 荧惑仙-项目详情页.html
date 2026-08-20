@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>荧惑仙 </title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card: #ffffff;
+    --text: #2c2c2c;
+    --muted: #888;
+    --accent: #c0392b;
+    --border: #e8e4df;
+    --code-bg: #f3f0eb;
+    --tag-bg: #f0ece7;
+    --tag-text: #6b5b4f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Serif SC', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ── Nav ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .lang-switch button {
+    background: none;
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .lang-switch button:hover, .lang-switch button.active {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+
+  /* ── Container ── */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 24px 120px;
+  }
+
+  /* ── Hero ── */
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { color: var(--text); }
+
+  h1.project-title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+
+  .project-desc {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  /* ── Tags ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .tag.primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Video ── */
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 56px;
+  }
+  .video-wrap iframe, .video-wrap video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .video-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    gap: 16px;
+  }
+  .video-placeholder svg { width: 60px; height: 60px; opacity: 0.6; }
+  .video-placeholder span { font-size: 14px; letter-spacing: 0.05em; }
+
+  /* ── Section ── */
+  section { margin-bottom: 56px; }
+  h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+    margin: 28px 0 10px;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.4;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .meta-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .meta-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .meta-value { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+  .overview-text {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.95;
+    margin-bottom: 12px;
+  }
+
+  /* ── Character Cards ── */
+  .char-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .char-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .char-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .char-age {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .char-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* ── Work List ── */
+  .work-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .work-list li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #444;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .work-list li::before {
+    content: '•';
+    color: var(--accent);
+    font-size: 18px;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  /* ── System Cards ── */
+  .system-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 16px;
+  }
+  .system-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .system-header {
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .system-header:hover { background: #faf9f7; }
+  .system-header h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  .system-header .toggle {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+  .system-card.open .system-header .toggle { transform: rotate(45deg); }
+  .system-body {
+    display: none;
+    padding: 18px 22px;
+  }
+  .system-card.open .system-body { display: block; }
+  .system-body p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.85;
+    margin-bottom: 12px;
+  }
+  .system-body p:last-child { margin-bottom: 0; }
+
+  /* ── Timeline ── */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin-top: 16px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -25px; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .tl-year {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .tl-event {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  /* ── Problems ── */
+  .problems-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .problems-list li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .problems-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--card);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    nav { padding: 12px 20px; }
+    .container { padding: 36px 16px 80px; }
+    h1.project-title { font-size: 26px; }
+    .meta-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-brand"><a href="https://ruiqiqq.github.io/index.html#top">祁睿</a></div>
+  <ul class="nav-links">
+    <li><a href="https://ruiqiqq.github.io/index.html#featured">项目</a></li>
+    <li><a href="https://ruiqiqq.github.io/index.html#resume">简历</a></li>
+    <li><a href="https://ruiqiqq.github.io/index.html#contact">联系</a></li>
+  </ul>
+  <div class="lang-switch">
+    <button>EN</button>
+    <button class="active">中文</button>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="https://ruiqiqq.github.io/index.html#featured">← 返回项目</a>
+  </div>
+
+  <!-- Title -->
+  <h1 class="project-title">荧惑仙 · Gamejam 版本</h1>
+
+  <!-- Description -->
+  <p class="project-desc">
+    一款以清末天津为背景的历史科幻 AVG + 第一人称视角解谜游戏。火星人降临近海，封建家族的欲望与野心交织，留洋与战争的命运纠缠——故事围绕周静姝的出走与觉醒展开，融合东方美学与外星科技想象。
+  </p>
+
+  <!-- Tags -->
+  <div class="tags">
+    <span class="tag primary">Gamejam 项目</span>
+    <span class="tag">历史科幻</span>
+    <span class="tag">第一人称解谜</span>
+    <span class="tag">视角切换</span>
+    <span class="tag">东方美学</span>
+    <span class="tag">剧情驱动</span>
+    <span class="tag">清末天津</span>
+    <span class="tag">外星人</span>
+    <span class="tag">电报通信</span>
+    <span class="tag">类金偶像演出</span>
+  </div>
+
+  <!-- Video -->
+  <div class="video-wrap">
+    <div class="video-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon points="5,3 19,12 5,21"/>
+      </svg>
+      <span>Gamejam 入场演出 · 演示视频</span>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <section>
+    <h2>项目概述</h2>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">职责</div>
+        <div class="meta-value">世界观设计 / 剧情大纲 / 角色设定 / 玩法设计 / 演出编排 / 关卡原型</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">工具</div>
+        <div class="meta-value">PPT（入场演出播片）/ 原型分镜表 / 画板概念图 / 剧本结构</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">时间</div>
+        <div class="meta-value">2026 · Gamejam 版本</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">分辨率</div>
+        <div class="meta-value">1600 × 1200</div>
+      </div>
+    </div>
+
+    <p class="overview-text">
+      本项目为 Gamejam 参赛版本，核心目标是在有限时间内完成一个可演示的玩法原型。游戏类型融合类金偶像 + 360° 3D 旋转投影解谜，每一关由场景中多个角色的第一人称视角驱动，玩家需要切换视角并填写对应角色名称来完成谜题。
+    </p>
+    <p class="overview-text">
+      故事设定在 1886—1900 年的天津，以历史人物为原型进行虚构改编（关键角色均已用假名替换），将真实历史事件（洋务运动、甲午战争、八国联军侵华）编织进一个火星人降临的外星科幻框架中。
+    </p>
+  </section>
+
+  <!-- Characters -->
+  <section>
+    <h2>主要角色</h2>
+    <div class="char-grid">
+      <div class="char-card">
+        <div class="char-name">火星人</div>
+        <div class="char-age">外星 · 降临体</div>
+        <div class="char-desc">不知多少岁，许多年前降临天津近海，被渔民捕捞苏醒后想回母星，能量不足于是控制小镇汲取人类欲望作为燃料。本体无力量，主要依靠工具。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">周之瀚（原名李鸿章）</div>
+        <div class="char-age">78—92 岁</div>
+        <div class="char-desc">主和派，洋务倡导者，封建大家长。老来得女，很喜欢小女儿，但必要时候小女儿也可以成为政治集团利益绑定的棋子。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">周静姝（原名李菊藕）</div>
+        <div class="char-age">6—20 岁</div>
+        <div class="char-desc">主角。留洋是强烈向往，无法接受父亲安排的政治婚姻。周之瀚几乎每次都把她排除在留洋名单之外，最终被迫嫁给沈德渊，引发故事高潮。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">沈德渊（周之瀚的另一位面）</div>
+        <div class="char-age">36—50 岁</div>
+        <div class="char-desc">主战派，由前皇帝安排给周之瀚的"政协委员"。大院内假沈慧心的形象来源。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">沈慧心</div>
+        <div class="char-age">10—24 岁</div>
+        <div class="char-desc">10 岁留洋，14 年未归。与周静姝用电报英文交流。是周静姝最珍视的笔友，也是她出走英国的最终目的地。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">假沈慧心</div>
+        <div class="char-age">外星人假冒</div>
+        <div class="char-desc">外星人假冒，形象是周静姝想象中的沈慧心。需要拥有与真沈慧心相反的面部特征（如一颗痣），用于在游戏中区分真假。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">文鸳</div>
+        <div class="char-age">10—24 岁</div>
+        <div class="char-desc">很小就买回来伺候沈慧心的丫鬟。沈慧心留洋后两人仍保持电报联系，是沈慧心最信任的人，最终帮助周静姝偷渡英国。</div>
+      </div>
+      <div class="char-card">
+        <div class="char-name">丁加立</div>
+        <div class="char-age">43 岁</div>
+        <div class="char-desc">英国传教士，周之瀚雇佣的英语家教。在小船上向周静姝和沈慧心讲授《谈天》，引出火星人的话题。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Timeline -->
+  <section>
+    <h2>故事时间线</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1886 年 5 月 · 天津海河</div>
+        <div class="tl-event">6 岁周静姝在海边小船上结识沈慧心，与英语家教丁加立初识《谈天》，谈到火星人的可能性。岸上周之瀚与沈德渊进行利益交换，沈慧心获公费留学英国的机会。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1898 年 · 天津宅院</div>
+        <div class="tl-event">14 岁周静姝与沈慧心频繁电报往来。周之瀚暗中布局，试图将沈德渊拉拢为幕僚进行政治绑定，并透露有意让周静姝嫁给沈德渊。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1900 年 4 月 · 电报</div>
+        <div class="tl-event">沈慧心发来电报，感觉国际形势不对，计划 5 月回国。但行程被战乱耽误，未能及时返回。她告知周静姝：若未及时归来，可通过她的关系暂时离开天津，与文鸳保持联系。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1900 年 6 月 · 宅院</div>
+        <div class="tl-event">战争爆发，帝国（清）倒塌前夕，周之瀚逼迫周静姝嫁给沈德渊。房间内发生激烈拉扯。刚跨进大院门的假沈慧心介入。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1900 年 7 月 14 日 · 柴房</div>
+        <div class="tl-event">周静姝因拒婚被关进柴房。假沈慧心将她释放并出言蛊惑她弑父——实则想吞噬周静姝想要出走的巨大欲望。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1900 年 7 月 14 日 · 大院</div>
+        <div class="tl-event">外星人科技被踩毁，巨大的"肉山"（上面布满周之瀚、沈德渊和外国人的面孔）出现在院子。周静姝怀抱一个不明生物。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">结局 · 天津码头</div>
+        <div class="tl-event">周静姝在文鸳的帮助下，用珠宝首饰贿赂货船船员，准备偷渡前往英国寻找沈慧心。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Work -->
+  <section>
+    <h2>我的工作</h2>
+    <ul class="work-list">
+      <li>完成全部角色设定与人物关系图谱，包括主次要角色共 8 人，梳理各角色年龄跨度、物品清单与性格弧光。</li>
+      <li>撰写完整故事大纲，覆盖 1886—1900 年共 14 年时间线，编排 7 个核心叙事节点与结局走向。</li>
+      <li>设计游戏核心玩法：多角色第一人称视角切换 + 视角角色身份填空谜题；制定分辨率规范（1600×1200）及关卡结构。</li>
+      <li>完成入场演出分镜表，共 6 场，包含分镜描述、文字脚本与概念图引用，可直接作为 PPT 播片演示。</li>
+      <li>设计关卡一"初识谈天"完整内容：场景描述、角色台词、物品清单、谜题题面（视角题 + 叙事连线题）。</li>
+      <li>完成场景氛围参考资料收集（清末天津海河、紫竹林码头、大沽口盐碱地），为美术执行提供文字锚点。</li>
+      <li>编排演出计划，规划"若 Gamejam 时间不够则优先提交入场演出"的降级策略。</li>
+    </ul>
+  </section>
+
+  <!-- System Breakdown -->
+  <section>
+    <h2>系统拆解</h2>
+    <div class="system-list">
+
+      <div class="system-card" onclick="toggleCard(this)">
+        <div class="system-header">
+          <h4>玩法机制：多视角第一人称解谜</h4>
+          <span class="toggle">+</span>
+        </div>
+        <div class="system-body">
+          <p>每一关由场景中出场的一个或多个角色的第一人称视角构成。游戏画面中设有 UI 按钮可切换视角，对应的填空解密界面要求玩家填写每个视角对应的角色名称。</p>
+          <p>这种设计让同一场景产生多重叙事层次——玩家需要从不同角色的视角审视同一事件，才能拼凑出完整真相。同一场对话在不同视角下会呈现截然不同的含义。</p>
+          <p>视角切换是核心谜题机制：玩家不仅需要解开谜题，还需要首先正确识别"现在是谁在看/感受这一切"。</p>
+        </div>
+      </div>
+
+      <div class="system-card" onclick="toggleCard(this)">
+        <div class="system-header">
+          <h4>叙事结构：三层时间线叠合</h4>
+          <span class="toggle">+</span>
+        </div>
+        <div class="system-body">
+          <p>故事在三个时间层次上并行展开：1886 年的初识（童年）、1898 年的电报往来（少女时期）、1900 年的危机与结局（成年）。三个时间层的碎片散落在各个关卡中。</p>
+          <p>玩家通过视角切换和物品收集，逐步拼凑出完整的时间线，最终理解"假沈慧心"的出现并非简单的身份欺骗，而是外星人利用周静姝内心渴望的欲望投射。</p>
+          <p>关键道具均具有跨时间线的隐喻：石头（火星碎片）、手绢（兰花与萤火虫）、谈天（知识的载体）、电报（跨距离的情感连接）。</p>
+        </div>
+      </div>
+
+      <div class="system-card" onclick="toggleCard(this)">
+        <div class="system-header">
+          <h4>演出系统：入场演出 + PPT 播片</h4>
+          <span class="toggle">+</span>
+        </div>
+        <div class="system-body">
+          <p>入场演出通过鼠标点击触发 PPT 播片，为游戏设定叙事基调。播片内容包含场景氛围描写（天津海河、大沽口、盐碱地、野草、汽笛与号子声），营造两个世界"揉裂与融合"的视觉意象。</p>
+          <p>分镜共 6 场：UFO 被捕捞 → 容器特写 → 打开容器 → 外星人苏醒（红外线视角特效）→ 投影解密 → 外星人控制小镇。全程配有角色台词与场景描写，可独立作为短篇演示使用。</p>
+        </div>
+      </div>
+
+      <div class="system-card" onclick="toggleCard(this)">
+        <div class="system-header">
+          <h4>关卡一"初识谈天"设计</h4>
+          <span class="toggle">+</span>
+        </div>
+        <div class="system-body">
+          <p>场景：小船与岸边并行叙事——丁加立、文鸳、沈慧心、周静姝在小船上谈论《谈天》与火星；周之瀚与沈德渊在岸边进行利益交换。</p>
+          <p>出场角色共 8 人，可切换视角：外星人（红外线视角）、文鸳、周之瀚、周静姝。</p>
+          <p>谜题一（视角题）：识别四个第一人称视角分别属于哪位角色。谜题二（叙事题）：通过三条信息连线，理解"周之瀚用女儿换取政治筹码"的核心矛盾。谜题三（隐藏条件）：在周之瀚身后发现偷偷观察的神仙（外星人）。</p>
+        </div>
+      </div>
+
+      <div class="system-card" onclick="toggleCard(this)">
+        <div class="system-header">
+          <h4>物品系统与叙事关联</h4>
+          <span class="toggle">+</span>
+        </div>
+        <div class="system-body">
+          <p>每个角色持有特定物品，物品在后续关卡中产生叙事或谜题功能：</p>
+          <p>周之瀚：翡翠扳指（权力象征）、周之瀚印、留洋名单（政治筹码）。沈慧心：《谈天》书夹火星星图（外星知识入口）、绣兰花与萤火虫的手绢（友情信物）。周静姝：黑色石头（火星碎片的隐喻性拥有）。文鸳：草稿纸（与沈慧心学英文的痕迹）、针线包（实际能力与忠诚）。丁加立：十字架项链、圣经（西方知识的传播者）。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Problems & Improvements -->
+  <section>
+    <h2>问题与改进</h2>
+    <ul class="problems-list">
+      <li>Gamejam 时间有限，优先确保入场演出和关卡一可演示完整体验，系统三、四的完整实现留作后续扩展。</li>
+      <li>多视角 UI 的交互设计尚未验证——切换视角按钮的位置和切换动画需要在 Playable Prototype 中测试玩家理解成本。</li>
+      <li>"假沈慧心"角色在视觉上的区分方案（痣的位置/面部特征反转）需要美术介入制定明确的视觉规范。</li>
+      <li>结局周静姝偷渡的情节目前只有文字描述，缺乏对应关卡设计；需要设计"贿赂船员"环节的互动小游戏。</li>
+      <li>外星人"肉山"的视觉表现（众多人脸叠加）需要概念图支持，目前仅为文字描述。</li>
+    </ul>
+  </section>
+
+  <!-- Workflow -->
+  <section>
+    <h2>工作流程说明</h2>
+    <p class="overview-text">
+      本项目采用先叙事、后系统的设计顺序：先完成角色设定与故事大纲，再推导对应的玩法机制与关卡结构。入场演出分镜使用 PPT 制作，可直接点击播片演示；关卡内容通过分镜表和文字脚本记录，为后续美术和程序执行提供锚点。Gamejam 时间压力下采用"核心体验优先、降级交付兜底"的优先级策略。
+    </p>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  © 2026 祁睿 · <a href="https://ruiqiqq.github.io/index.html#top">返回首页</a>
+</footer>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
