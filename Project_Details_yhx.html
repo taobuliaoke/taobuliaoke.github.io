@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>荧惑仙 · 项目详情 - Jiayan Gong (Tox)</title>
+  <title>Yinghuo Xian · Project Details - Jiayan Gong (Tox)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -128,6 +128,24 @@
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
       font-size: 0.82rem;
+    }
+
+/* ── KV Banner Wrap ── */
+    .kv-wrap {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 1.2rem;
+      margin-bottom: 2rem;
+      background: var(--card-bg);
+    }
+
+    .kv-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
     }
 
     /* ── Video Wrap ── */
@@ -359,7 +377,7 @@
       position: relative;
       margin-bottom: 1.5rem;
     }
-
+    /* 已经完成 */
     .tl-item::before {
       content: '';
       position: absolute;
@@ -382,7 +400,29 @@
       color: #bbb;
       line-height: 1.6;
     }
+/* 1. 将左侧小圆点换成半透明灰色虚线框/小灰点 */
+    .tl-item.pending-item::before {
+      background: transparent;
+      border: 1.5px dashed var(--text-muted);
+      box-shadow: none; /* 去除蓝色发光效果 */
+      width: 7px;
+      height: 7px;
+    }
 
+    /* 2. 降低 Pending 节点的年份标题亮度 */
+    .tl-item.pending-item .tl-year {
+      color: var(--text-muted);
+    }
+    .tl-status-pending {
+      display: inline-block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px dashed var(--border-hover);
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      font-style: italic;
+    }
     /* ── Problems List ── */
     .problems-list {
       list-style: none;
@@ -453,31 +493,33 @@
     <!-- 项目主标题与简介 -->
     <h1 class="project-title">荧惑仙</h1>
     <p class="project-subtitle">YingHuoXian: The Mars Wraith (Gamejam Prototype)</p>
+  <!-- ── 新增：KV 主视觉图 ── -->
+  <div class="kv-wrap">
+    <img src="assets/img/yhx_kv.jpg" alt="荧惑仙 Key Visual" loading="eager">
+  </div>
     
     <p class="project-desc">
-      一款以清末天津为背景的历史科幻 AVG + 第一人称视角解谜游戏。火星人降临近海，封建家族的欲望与野心交织，留洋与战争的命运纠缠——故事围绕周静姝的出走与觉醒展开，融合东方美学与外星科技想象。
+      A historical‑sci‑fi AVG set in the late Qing Dynasty, combining first‑person perspective with The Case of the Golden Idol‑style puzzle gameplay. Martians descend upon the coastal waters, where desires and ambitions of feudal families intertwine, and fates of overseas‑educated figures collide with the chaos of war — a fusion of Eastern aesthetics and extraterrestrial‑technology imagination.
     </p>
 
     <!-- 标签区域 (对齐 highlight-tag 与 p-tag) -->
     <div class="tags">
       <span class="highlight-tag">Godot Prototype</span>
       <span class="highlight-tag">Narrative Design</span>
-      <span class="p-tag">历史科幻</span>
-      <span class="p-tag">第一人称解谜</span>
-      <span class="p-tag">视角切换</span>
-      <span class="p-tag">东方美学</span>
-      <span class="p-tag">清末天津</span>
-      <span class="p-tag">类金偶像演出</span>
+      <span class="p-tag">Historical Sci‑Fi</span>
+      <span class="p-tag">First‑Person Puzzle</span>
+      <span class="p-tag">Perspective Switching</span>
+      <span class="p-tag">Eastern Aesthetics</span>
+      <span class="p-tag">Late‑Qing</span>
+      <span class="p-tag">The Case of the Golden Idol‑inspired Presentation</span>
     </div>
 
     <!-- 演示视频/图片区 -->
     <div class="video-wrap">
-      <div class="video-placeholder">
-        <svg viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-        <span>Gamejam 入场演出 · 演示视频加载区域</span>
-      </div>
+     <video controls preload="metadata" poster="assets/img/yhx_cover.jpg">
+        <source src="assets/video/yhx.mp4" type="video/mp4">
+        您的浏览器不支持 HTML5 视频播放。
+      </video>
     </div>
 
     <!-- 项目概述 -->
@@ -487,27 +529,27 @@
       <div class="meta-grid">
         <div class="meta-item">
           <div class="meta-label">Role</div>
-          <div class="meta-value">世界观设计 / 剧情大纲 / 角色设定 / 玩法设计 / 演出编排 / 关卡原型</div>
+          <div class="meta-value">Worldbuilding · Story Outline · Character Lore · Gameplay Design · Scene Staging · Level Prototyping</div>
         </div>
         <div class="meta-item">
           <div class="meta-label">Tools</div>
-          <div class="meta-value">PPT (演出播片) / 原型分镜表 / 画板概念图 / 剧本结构</div>
+          <div class="meta-value">godot · sai · blender · photoshop</div>
         </div>
         <div class="meta-item">
           <div class="meta-label">Timeline</div>
-          <div class="meta-value">2026 · Gamejam Prototype</div>
+          <div class="meta-value">2026 · Gamejam Prototype · Development is still in progress.</div>
         </div>
         <div class="meta-item">
           <div class="meta-label">Resolution</div>
-          <div class="meta-value">1600 × 1200</div>
+          <div class="meta-value">1600 × 1200 · Final Build: 16:9</div>
         </div>
       </div>
 
       <p class="overview-text">
-        本项目为 Gamejam 参赛版本，核心目标是在有限时间内完成一个可演示的玩法原型。游戏类型融合类金偶像 + 360° 3D 旋转投影解谜，每一关由场景中多个角色的第一人称视角驱动，玩家需要切换视角并填写对应角色名称来完成谜题。
+        The content shown in this project is its Game Jam submission build. The core goal was to produce a playable gameplay prototype within a tight time limit. The game blends The Case of the Golden Idol‑style design with 360° 3D projected‑rotation puzzles. Each level is driven by the first‑person perspectives of multiple characters within the scene. Players switch between viewpoints, input corresponding character names, deduce the full sequence of events, and solve puzzles through fill‑in‑the‑blank mechanics.
       </p>
       <p class="overview-text">
-        故事设定在 1886—1900 年的天津，以历史人物为原型进行虚构改编（关键角色均已用假名替换），将真实历史事件（洋务运动、甲午战争、八国联军侵华）编织进一个火星人降临的外星科幻框架中。
+        This story is set between 1886 and 1900 in the late Qing Dynasty. It features fictionalized characters adapted from historical figures and integrates pivotal real-world events — including the Self-Strengthening Movement, the First Sino-Japanese War, and the Eight-Power Allied Forces Invasion — into an alternate sci-fi framework centered on the arrival of Martian beings.
       </p>
     </section>
 
@@ -516,79 +558,39 @@
       <h2 class="section-title">Characters</h2>
       <div class="char-grid">
         <div class="char-card">
-          <div class="char-name">火星人</div>
-          <div class="char-age">外星 · 降临体</div>
-          <div class="char-desc">不知多少岁，许多年前降临天津近海，被渔民捕捞苏醒后想回母星，能量不足于是控制小镇汲取人类欲望作为燃料。本体无力量，主要依靠工具。</div>
+          <div class="char-name">Martian</div>
+          <div class="char-age">Extraterrestrial · Arrival Entity</div>
+          <div class="char-desc">Of unknown age. It descended on the coastal waters of Tianjin many years ago, was caught by fishermen and awakened. It longs to return to its home planet but lacks energy, so it manipulates the town and feeds on human desires as fuel. It has no inherent power and relies mainly on tools.</div>
         </div>
         <div class="char-card">
-          <div class="char-name">周之瀚（原名李鸿章）</div>
-          <div class="char-age">78—92 岁</div>
-          <div class="char-desc">主和派，洋务倡导者，封建大家长。老来得女，很喜欢小女儿，但必要时候小女儿也可以成为政治集团利益绑定的棋子。</div>
+          <div class="char-name">Zhou Zhihan (based on Li Hongzhang)</div>
+          <div class="char-age">Age 78–92</div>
+          <div class="char-desc">Peace faction leader, advocate of the Self-Strengthening Movement, and feudal patriarch. He had a daughter in his old age and dotes on his youngest daughter, but when necessary, she can also become a pawn to bind the interests of the political group.</div>
         </div>
         <div class="char-card">
-          <div class="char-name">周静姝（原名李菊藕）</div>
-          <div class="char-age">6—20 岁</div>
-          <div class="char-desc">主角。留洋是强烈向往，无法接受父亲安排的政治婚姻。周之瀚几乎每次都把她排除在留洋名单之外，最终被迫嫁给沈德渊，引发故事高潮。</div>
+          <div class="char-name">Zhou Jing Shu (based on Li Ju'ou)</div>
+          <div class="char-age">Age 6–20</div>
+          <div class="char-desc">Protagonist. She yearns strongly to study abroad and cannot accept the political marriage arranged by her father. Zhou Zhihan excludes her from the overseas study list almost every time. She is eventually forced to marry Shen Deyuan, triggering the climax of the story.</div>
         </div>
         <div class="char-card">
-          <div class="char-name">沈德渊（周之瀚的另一位面）</div>
-          <div class="char-age">36—50 岁</div>
-          <div class="char-desc">主战派，由前皇帝安排给周之瀚的“政协委员”。大院内假沈慧心的形象来源。</div>
+          <div class="char-name">Shen Deyuan (an alternate facet of Li Hongzhang)</div>
+          <div class="char-age">Age 36–50</div>
+          <div class="char-desc">War faction official, appointed by the former emperor as a political supervisor to Zhou Zhihan. He is the prototype of the fake Shen Huixin in the mansion.</div>
         </div>
         <div class="char-card">
-          <div class="char-name">沈慧心</div>
-          <div class="char-age">10—24 岁</div>
-          <div class="char-desc">10 岁留洋，14 年未归。与周静姝用电报英文交流。是周静姝最珍视的笔友，也是她出走英国的最终目的地。</div>
+          <div class="char-name">Shen Huixin</div>
+          <div class="char-age">Age 10–24</div>
+          <div class="char-desc">Went abroad to study at age 10 and has not returned for 14 years. She communicates with Zhou Jingshu in English via telegram. She is Zhou Jingshu's most cherished pen pal and the final destination of her escape to Britain.</div>
         </div>
         <div class="char-card">
-          <div class="char-name">假沈慧心</div>
-          <div class="char-age">外星人假冒</div>
-          <div class="char-desc">外星人假冒，形象是周静姝想象中的沈慧心。需要拥有与真沈慧心相反的面部特征（如一颗痣），用于在游戏中区分真假。</div>
+          <div class="char-name">Wen Yuan</div>
+          <div class="char-age">Age 10–24</div>
+          <div class="char-desc">A maid bought at a young age to serve Shen Huixin. The two keep in touch by telegram after Shen Huixin goes abroad. She is Shen Huixin's most trusted person and eventually helps Zhou Jingshu smuggle to Shanghai.</div>
         </div>
         <div class="char-card">
-          <div class="char-name">文鸳</div>
-          <div class="char-age">10—24 岁</div>
-          <div class="char-desc">很小就买回来伺候沈慧心的丫鬟。沈慧心留洋后两人仍保持电报联系，是沈慧心最信任的人，最终帮助周静姝偷渡英国。</div>
-        </div>
-        <div class="char-card">
-          <div class="char-name">丁加立</div>
-          <div class="char-age">43 岁</div>
-          <div class="char-desc">英国传教士，周之瀚雇佣的英语家教。在小船上向周静姝和沈慧心讲授《谈天》，引出火星人的话题。</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 故事时间线 -->
-    <section>
-      <h2 class="section-title">Story Timeline</h2>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-year">1886 年 5 月 · 天津海河</div>
-          <div class="tl-event">6 岁周静姝在海边小船上结识沈慧心，与英语家教丁加立初识《谈天》，谈到火星人的可能性。岸上周之瀚与沈德渊进行利益交换，沈慧心获公费留学英国的机会。</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1898 年 · 天津宅院</div>
-          <div class="tl-event">14 岁周静姝与沈慧心频繁电报往来。周之瀚暗中布局，试图将沈德渊拉拢为幕僚进行政治绑定，并透露有意让周静姝嫁给沈德渊。</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1900 年 4 月 · 电报</div>
-          <div class="tl-event">沈慧心发来电报，感觉国际形势不对，计划 5 月回国。但行程被战乱耽误，未能及时返回。她告知周静姝：若未及时归来，可通过她的关系暂时离开天津，与文鸳保持联系。</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1900 年 6 月 · 宅院</div>
-          <div class="tl-event">战争爆发，帝国（清）倒塌前夕，周之瀚逼迫周静姝嫁给沈德渊。房间内发生激烈拉扯。刚跨进大院门的假沈慧心介入。</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1900 年 7 月 14 日 · 柴房</div>
-          <div class="tl-event">周静姝因拒婚被关进柴房。假沈慧心将她释放并出言蛊惑她弑父——实则想吞噬周静姝想要出走的巨大欲望。</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1900 年 7 月 14 日 · 大院</div>
-          <div class="tl-event">外星人科技被踩毁，巨大的“肉山”（上面布满周之瀚、沈德渊和外国人的面孔）出现在院子。周静姝怀抱一个不明生物。</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">结局 · 天津码头</div>
-          <div class="tl-event">周静姝在文鸳的帮助下，用珠宝首饰贿赂货船船员，准备偷渡前往英国寻找沈慧心。</div>
+          <div class="char-name">Ding Jiali</div>
+          <div class="char-age">Age 43</div>
+          <div class="char-desc">British missionary, English tutor hired by Zhou Zhihan. He teaches On Astronomy (Tan Tian) to Zhou Jingshu and Shen Huixin on a small boat, introducing the topic of Martians.</div>
         </div>
       </div>
     </section>
@@ -597,13 +599,10 @@
     <section>
       <h2 class="section-title">My Responsibilities</h2>
       <ul class="work-list">
-        <li>完成全部角色设定与人物关系图谱，包括主次要角色共 8 人，梳理各角色年龄跨度、物品清单与性格弧光。</li>
-        <li>撰写完整故事大纲，覆盖 1886—1900 年共 14 年时间线，编排 7 个核心叙事节点与结局走向。</li>
-        <li>设计游戏核心玩法：多角色第一人称视角切换 + 视角角色身份填空谜题；制定分辨率规范（1600×1200）及关卡结构。</li>
-        <li>完成入场演出分镜表，共 6 场，包含分镜描述、文字脚本与概念图引用，可直接作为 PPT 播片演示。</li>
-        <li>设计关卡一“初识谈天”完整内容：场景描述、角色台词、物品清单、谜题题面（视角题 + 叙事连线题）。</li>
-        <li>完成场景氛围参考资料收集（清末天津海河、紫竹林码头、大沽口盐碱地），为美术执行提供文字锚点。</li>
-        <li>编排演出计划，规划“若 Gamejam 时间不够则优先提交入场演出”的降级策略。</li>
+        <li>Character Design</li>
+        <li>Story Writing</li>
+        <li>Cutscene & Level Design</li>
+        <li>Godot Development</li>
       </ul>
     </section>
 
@@ -614,51 +613,15 @@
 
         <div class="system-card" onclick="toggleCard(this)">
           <div class="system-header">
-            <h4>玩法机制：多视角第一人称解谜</h4>
+            <h4>Multi-Perspective FP Fill-In-The-Blank Puzzle</h4>
             <span class="toggle">+</span>
           </div>
           <div class="system-body">
-            <p>每一关由场景中出场的一个或多个角色的第一人称视角构成。游戏画面中设有 UI 按钮可切换视角，对应的填空解密界面要求玩家填写每个视角对应的角色名称。</p>
-            <p>这种设计让同一场景产生多重叙事层次——玩家需要从不同角色的视角审视同一事件，才能拼凑出完整真相。同一场对话在不同视角下会呈现截然不同的含义。</p>
-            <p>视角切换是核心谜题机制：玩家不仅需要解开谜题，还需要首先正确识别“现在是谁在看/感受这一切”。</p>
+            <p>Each level consists of first‑person viewpoints from one or more in‑scene characters. UI buttons allow perspective switching. On the puzzle interface, players must input the character name for each viewpoint.</p>
+            <p>This design creates multi‑layered narratives for a single scene. Players must examine the same event through different characters’ perspectives to piece together the full truth. Identical dialogue carries vastly different meanings across viewpoints.</p>
+            <p>Perspective‑switching serves as a core puzzle mechanic: players must first identify whose point‑of‑view they are experiencing before solving puzzles.</p>
           </div>
         </div>
-
-        <div class="system-card" onclick="toggleCard(this)">
-          <div class="system-header">
-            <h4>叙事结构：三层时间线叠合</h4>
-            <span class="toggle">+</span>
-          </div>
-          <div class="system-body">
-            <p>故事在三个时间层次上并行展开：1886 年的初识（童年）、1898 年的电报往来（少女时期）、1900 年的危机与结局（成年）。三个时间层的碎片散落在各个关卡中。</p>
-            <p>玩家通过视角切换和物品收集，逐步拼凑出完整的时间线，最终理解“假沈慧心”的出现并非简单的身份欺骗，而是外星人利用周静姝内心渴望的欲望投射。</p>
-            <p>关键道具均具有跨时间线的隐喻：石头（火星碎片）、手绢（兰花与萤火虫）、谈天（知识的载体）、电报（跨距离的情感连接）。</p>
-          </div>
-        </div>
-
-        <div class="system-card" onclick="toggleCard(this)">
-          <div class="system-header">
-            <h4>演出系统：入场演出 + PPT 播片</h4>
-            <span class="toggle">+</span>
-          </div>
-          <div class="system-body">
-            <p>入场演出通过鼠标点击触发 PPT 播片，为游戏设定叙事基调。播片内容包含场景氛围描写（天津海河、大沽口、盐碱地、野草、汽笛与号子声），营造两个世界“揉裂与融合”的视觉意象。</p>
-            <p>分镜共 6 场：UFO 被捕捞 → 容器特写 → 打开容器 → 外星人苏醒（红外线视角特效）→ 投影解密 → 外星人控制小镇。全程配有角色台词与场景描写，可独立作为短篇演示使用。</p>
-          </div>
-        </div>
-
-        <div class="system-card" onclick="toggleCard(this)">
-          <div class="system-header">
-            <h4>关卡一“初识谈天”设计</h4>
-            <span class="toggle">+</span>
-          </div>
-          <div class="system-body">
-            <p>场景：小船与岸边并行叙事——丁加立、文鸳、沈慧心、周静姝在小船上谈论《谈天》与火星；周之瀚与沈德渊在岸边进行利益交换。</p>
-            <p>出场角色共 8 人，可切换视角：外星人（红外线视角）、文鸳、周之瀚、周静姝。</p>
-            <p>谜题一（视角题）：识别四个第一人称视角分别属于哪位角色。谜题二（叙事题）：通过三条信息连线，理解“周之瀚用女儿换取政治筹码”的核心矛盾。谜题三（隐藏条件）：在周之瀚身后发现偷偷观察的神仙（外星人）。</p>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -666,13 +629,45 @@
     <section>
       <h2 class="section-title">Problems & Future Improvements</h2>
       <ul class="problems-list">
-        <li>Gamejam 时间有限，优先确保入场演出和关卡一可演示完整体验，系统三、四的完整实现留作后续扩展。</li>
-        <li>多视角 UI 的交互设计尚未验证——切换视角按钮的位置和切换动画需要在 Playable Prototype 中测试玩家理解成本。</li>
-        <li>“假沈慧心”角色在视觉上的区分方案（痣的位置/面部特征反转）需要美术介入制定明确的视觉规范。</li>
-        <li>结局周静姝偷渡的情节目前只有文字描述，缺乏对应关卡设计；需要设计“贿赂船员”环节的互动小游戏。</li>
+        <li>Due to limited Game Jam time, priority was given to a playable complete experience for opening cutscenes and Level 1. Full implementation of Systems 3 and 4 is reserved for future expansion.</li>
+        <li>The multi‑perspective UI interaction is unvalidated: button placement and transition animations for perspective switching require playtesting in the playable prototype to gauge player comprehension cost.</li>
       </ul>
     </section>
-
+    <!-- 开发时间线 -->
+    <section>
+      <h2 class="section-title">Development Timeline</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">May 25, 2026: Completed playable Game Jam version</div>
+          <div class="tl-event">Built Prologue and Level 1</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Jun 27, 2026: Exhibited at Fusion Game Festival</div>
+          <div class="tl-event">Won Best Art Award, Top 3 Most Notable Community Game</div>
+        </div>
+        <!-- todo -->
+        <div class="tl-item pending-item">
+          <div class="tl-year">Sep 5, 2026: Finalize official version outline </div>
+          <div class="tl-event">Pending</div>
+        </div>
+        <div class="tl-item pending-item">
+          <div class="tl-year">Sep 2026: Redesign UI for the full release to elevate overall visual polish</div>
+          <div class="tl-event">Pending</div>
+        </div>
+        <div class="tl-item pending-item">
+          <div class="tl-year">Oct 2026: Complete Chapters 1‑2 of the full release for CP Exhibition</div>
+          <div class="tl-event">Pending</div>
+        </div>
+        <div class="tl-item pending-item">
+          <div class="tl-year">Jan‑Feb 2027: Release official demo</div>
+          <div class="tl-event">Pending</div>
+        </div>
+        <div class="tl-item pending-item">
+          <div class="tl-year">Full‑release launch by April 2028</div>
+          <div class="tl-event">Pending</div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- Footer 页脚 -->
