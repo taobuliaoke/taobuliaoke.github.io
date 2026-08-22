@@ -199,6 +199,7 @@
     .project-media {
       flex: 1;
       min-width: 300px;
+      aspect-ratio: 16 / 9;
       border-radius: 10px;
       overflow: hidden;
       background: #000;
@@ -206,19 +207,20 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      aspect-ratio: 16 / 9;
+      aspect-ratio:flex-start;
     }
 
     .project-media img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
     }
 
     .project-media iframe {
       width: 100%;
       height: 100%;
+      object-fit: contain;
       border: none;
     }
 
@@ -493,37 +495,40 @@
       <!-- 项目 2：没有视频外链，放图片示例 -->
       <article class="project-card">
         <div class="project-media">
-          <img src="assets/img/edb.jpg" alt="游戏项目 / 蛾蝶变">
+          <img src="assets/img/xjg_cover.jpg" alt="游戏项目 / 蛾蝶变">
         </div>
 
         <div class="project-info">
           <div>
             <div class="project-meta-top">
               <span>2025 · UNITY ENGINE · INDIE GAME</span>
-              <span class="status-badge status-tbc">On Hold</span>
+              <span class="status-badge status-stopped">stopped</span>
             </div>
 
             <h3 class="project-title">血痂谷</h3>
             <h3 class="project-title-EN">Crust‑Blood Valley</h3>
             <p class="project-desc">
-            A mild puzzle narrative game with sci-fi elements, set in China’s urban-rural fringe of 2010. Waking up in his hometown after a decade of absence, the 30-year-old protagonist finds the familiar district shrouded in uncanny anomalies.
+                Sealed off from the outside world, Scab Valley is plagued by a mysterious endemic disease. Players take on the role of
+                an experimentally modified Chimera. By concocting special potions through the Dream Machine, you gradually regain your
+                human form. Through repeated transformations and metamorphoses, you uncover the buried truth of your origin.
             </p>
 
             <div class="project-details-grid">
               <div class="detail-row">
                 <span class="detail-label">Role</span>
-                <span class="detail-value">Personal Project</span>
+                <span class="detail-value">Game Producer / Gameplay Designer / Concept Artist / Character Artist</span>
               </div>
               <div class="detail-row">
                 <span class="detail-label">Tools</span>
-                <span class="detail-value">Photoshop、csp、rpgmaker</span>
+                <span class="detail-value">Photoshop、Unity、CSP、Sai</span>
               </div>
             </div>
 
             <div class="project-tags">
-              <span class="p-tag">RPG Maker</span>
+              <span class="p-tag">Unity</span>
               <span class="p-tag">2D Art</span>
-              <span class="p-tag">Visuals of China’s urban‑rural fringe</span>
+              <span class="p-tag">Chinese Wasteland Sci-Fi</span>
+           
             </div>
           </div>
 

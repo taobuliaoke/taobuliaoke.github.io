@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yinghuo Xian · Project Details - Jiayan Gong (Tox)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #0f0f11;
+      --card-bg: #141418;
+      --card-alt: #1a1a1e;
+      --border: #2a2a30;
+      --border-hover: #3f3f4a;
+      --text-main: #ececec;
+      --text-muted: #8a8a93;
+      --text-sub: #a0a0a0;
+      --accent: #4da6ff;
+      --btn-bg: #4000ff;
+      --btn-hover: #5200ff;
+      --tag-bg: #1f1f26;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    /* ── Navigation Header ── */
+    header {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.2rem;
+    }
+    
+    .nav-brand a {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      transition: opacity 0.2s;
+    }
+    .breadcrumb:hover { opacity: 0.8; }
+
+    /* ── 需求 2: 标题上方图片样式 ── */
+    .header-banner {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto 2rem;
+        /* 彻底移除边框和圆角 */
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        overflow: visible;
+
+        /* 设置图片居中与展示 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+    .header-banner img {
+      width: 50%;
+      height: auto;
+      max-height: 600px;
+      display: block;
+      object-fit: contain; /* 保证整张图完整居中显示，不裁切 */
+      object-fit: cover;
+    }
+
+    /* ── Project Header ── */
+    h1.project-title {
+      font-size: 2.3rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── 需求 3: 中英标题下方横向长条图片展示区 ── */
+    .horizontal-strip {
+      display: flex;
+      flex-direction: row;
+      align-items:flex-start;
+      justify-content: flex-start;
+      width:100%;
+      height: 305px; /* 👈 这里统一控制所有图片展示的高度，可按需修改 */
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-bottom: 1.5rem;
+        /* 彻底移除间距与边框，实现无缝拼接 */
+      gap: 0;
+      background:transparent;
+        /* 隐藏或美化滚动条 */
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-hover) transparent;
+      padding:0;
+      box-sizing: content-box;
+    }
+
+    .horizontal-strip::-webkit-scrollbar {
+      height: 5px;
+    }
+    .horizontal-strip::-webkit-scrollbar-thumb {
+      background: var(--border-hover);
+    }
+
+    .strip-item {
+      flex: 0 0 auto;
+      height: 100%; /* 长条默认高度 */
+      margin: 0;
+      padding: 0;
+      display:flex;
+      align-items:center;
+    }
+
+    .strip-item img {
+      height: 100%;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    .project-desc {
+      font-size: 0.98rem;
+      color: #b0b0b0;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Tag Capsules ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .highlight-tag {
+      background: rgba(77, 166, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(77, 166, 255, 0.4);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .p-tag {
+      background: var(--tag-bg);
+      color: #bbb;
+      border: 1px solid #2d2d38;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+    }
+
+    /* ── 需求 1: 轮播图替代视频展区 ── */
+    .carousel-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 3rem;
+      user-select: none;
+    }
+
+    .carousel-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 轮播翻页按钮 */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 15, 17, 0.6);
+      color: #fff;
+      border: 1px solid var(--border);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .carousel-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000;
+    }
+
+    .carousel-btn.prev { left: 16px; }
+    .carousel-btn.next { right: 16px; }
+
+    /* 轮播底部圆点指示器 */
+    .carousel-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ── Section Styles ── */
+    section { margin-bottom: 3rem; }
+
+    .section-title {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    /* ── Meta Grid ── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-item {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .meta-value {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .overview-text {
+      font-size: 0.95rem;
+      color: #b0b0b0;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Character Cards Grid ── */
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .char-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .char-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .char-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .char-age {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .char-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Work List ── */
+    .work-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .work-list li {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.6;
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .work-list li::before {
+      content: "•";
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* ── Accordion Systems ── */
+    .system-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .system-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .system-header {
+      padding: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .system-header:hover {
+      background: var(--card-alt);
+    }
+
+    .system-header h4 {
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .system-header .toggle {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+    }
+
+    .system-card.open .system-header .toggle {
+      transform: rotate(45deg);
+      color: var(--accent);
+    }
+
+    .system-body {
+      display: none;
+      padding: 0 1.2rem 1.2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.5rem;
+    }
+
+    .system-card.open .system-body {
+      display: block;
+    }
+
+    .system-body p {
+      font-size: 0.88rem;
+      color: #a0a0a0;
+      line-height: 1.7;
+      margin-top: 0.8rem;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem; top: 6px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(77, 166, 255, 0.5);
+    }
+
+    .tl-year {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .tl-event {
+      font-size: 0.88rem;
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    .tl-item.pending-item::before {
+      background: transparent;
+      border: 1.5px dashed var(--text-muted);
+      box-shadow: none;
+      width: 7px;
+      height: 7px;
+    }
+
+    .tl-item.pending-item .tl-year {
+      color: var(--text-muted);
+    }
+
+    /* ── Problems List ── */
+    .problems-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .problems-list li {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-size: 0.88rem;
+      color: #aaa;
+      line-height: 1.6;
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .problems-list li::before {
+      content: "→";
+      color: var(--accent);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      header { flex-direction: column; gap: 1rem; text-align: center; }
+      .meta-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header 导航区 -->
+  <header>
+    <div class="nav-brand"><a href="index.html">Tox</a></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://github.com/taobuliaoke" target="_blank">GitHub</a></li>
+    </ul>
+  </header>
+
+  <div class="container">
+    <!-- 面包屑返回 -->
+    <a href="index.html" class="breadcrumb">← Back to Projects</a>
+
+    <!-- 需求 2: 标题文字上面的顶部图片 -->
+    <div class="header-banner">
+      <img src="assets/img/xjg_logo.png" alt="Header Banner Image">
+    </div>
+
+    <!-- 项目主标题 -->
+    <h1 class="project-title">血痂谷</h1>
+    <p class="project-subtitle">Crust‑Blood Valley</p>
+
+    <!-- 需求 3: 中英标题文字下方的横向拼贴长图展示区 -->
+    <div class="horizontal-strip"> 
+      <div class="horizontal-strip" id="autoStripContainer"></div>
+    </div>
+    <script>
+    // 配置：图片的文件夹路径、命名前缀、后缀名，以及图片总张数
+    const stripConfig = {
+        folder: 'assets/img/xjg/',
+        prefix: 'strip_',
+        ext: '.png',
+        count: 7 // 👈 修改为你文件夹里的图片总张数
+        };
+
+    const container = document.getElementById('autoStripContainer');
+
+    // 动态批量生成图片节点
+    for (let i = 1; i <= stripConfig.count; i++) {
+        const item = document.createElement('div');
+        item.className = 'strip-item';
+
+        const img = document.createElement('img');
+        img.src = `${stripConfig.folder}${stripConfig.prefix}${i}${stripConfig.ext}`;
+        img.alt = `Strip Image ${i}`;
+
+        item.appendChild(img);
+        container.appendChild(item);
+        }
+    </script>
+    
+    <p class="project-desc">
+    Sealed off from the outside world, Scab Valley is plagued by a mysterious endemic disease. Players take on the role of
+    an experimentally modified Chimera. By concocting special potions through the Dream Machine, you gradually regain your
+    human form. Through repeated transformations and metamorphoses, you uncover the buried truth of your origin.
+    </p>
+
+    <!-- 标签区域 -->
+    <div class="tags">
+      <span class="highlight-tag">Chinese Wasteland Sci-Fi</span>
+      <span class="highlight-tag">Point-and-Click Puzzle</span>
+      <span class="p-tag">Item Crafting</span>
+      <span class="p-tag">AVG</span>
+      <span class="p-tag">Codex Collection</span>
+      <span class="p-tag">Eastern Aesthetics</span>
+      <span class="p-tag">Late‑Qing</span>
+      <span class="p-tag">Branching Storylines & Multiple Endings</span>
+    </div>
+
+    <!-- 需求 1: 支持鼠标点击翻页的图片轮播展示区 -->
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+      
+      <div class="carousel-slides" id="carouselSlides">
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/1.png" alt="Slide 1"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/2.png" alt="Slide 2"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/3.png" alt="Slide 3"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/4.png" alt="Slide 4"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/5.png" alt="Slide 5"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/6.png" alt="Slide 6"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/7.png" alt="Slide 7"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/8.png" alt="Slide 8"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/9.png" alt="Slide 9"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/10.png" alt="Slide 10"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/11.png" alt="Slide 11"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/12.png" alt="Slide 12"></div>
+        <div class="carousel-slide"><img src="assets/img/xjg_bg/13.png" alt="Slide 13"></div>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+
+    <!-- 项目概述 -->
+    <section>
+      <h2 class="section-title">Overview</h2>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Role</div>
+          <div class="meta-value">Game Producer · Core Gameplay Design · Art Concept Design · Character 2D Art </div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tools</div>
+          <div class="meta-value">godot · sai · blender · photoshop</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Timeline</div>
+          <div class="meta-value">2025 · Coreblazer Game Jam entry build.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Resolution</div>
+          <div class="meta-value">1600 × 900</div>
+        </div>
+      </div>
+
+      <p class="overview-text">
+        Core Gameplay Loop：
+      </p>
+      <p class="overview-text">
+        Explore scenes → Collect items → Craft unique potions at the workbench → Consume potions to trigger metamorphosis →
+        Unlock new areas and branching narratives → Progress toward distinct endings
+      </p>
+    </section>
+
+    <!-- 主要角色 -->
+    <section>
+      <h2 class="section-title">Characters</h2>
+      <div class="char-grid">
+        <div class="char-card">
+          <div class="char-name">You</div>
+          <div class="char-age">Unknown Age</div>
+          <div class="char-desc">A monster born from scientific experiments</div>
+        </div>
+        <div class="char-card">
+          <div class="char-name">Zhuge Lan</div>
+          <div class="char-age">Unknown Age</div>
+          <div class="char-desc">She claims to be a survivor from an unknown laboratory. She wears aerospace‑style work overalls in grey and navy, with
+          red markings on her arms. Gentle and curious, she enjoys picking up trinkets and old artifacts. She spawns after the
+          player’s first metamorphosis in every playthrough. As a core story‑driving NPC, she develops a bond with the protagonist
+          that goes beyond friendship.</div>
+        </div>
+        <div class="char-card">
+          <div class="char-name">Ms. Box</div>
+          <div class="char-age">Unknown Age</div>
+          <div class="char-desc">A partially repaired medical‑grade machine, the physical vessel of Scab Valley’s "Dream Machine". Its repairs are
+          incomplete: it can only concoct potions for conscious individuals and cannot treat those who are unconscious. Its screen
+          displays expressive facial animations.</div>
+        </div>
+        <div class="char-card">
+          <div class="char-name">Liu Hong</div>
+          <div class="char-age">Unknown Age</div>
+          <div class="char-desc">A middle-aged woman who travels in search of treatment for her infected, unconscious daughter Xiao Lu. She serves as the
+          core emotional pillar of the entire story, with her fate deeply intertwined with the protagonist across all ending
+          routes.</div>
+        </div>
+        <div class="char-card">
+          <div class="char-name">Wei Chaoxue</div>
+          <div class="char-age">Unknown Age</div>
+          <div class="char-desc">A former scholar who assists Ms. Box with communications. She knows Ms. Box’s true name and forgotten past. She brings the 
+          little girl’s medical records yet possesses no means to cure her.</div>
+        </div>
+        <div class="char-card">
+          <div class="char-name">Xu Jindu</div>
+          <div class="char-age">Unknown Age</div>
+          <div class="char-desc">A staff member of the Alliance, with GCGA / Alliance printed on their chest. They are in charge of registering the
+          protagonist’s physical and morphological status. Mild-tempered, they facilitate narrative transitions in the endings.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 我的职责与工作 -->
+    <section>
+      <h2 class="section-title">My Responsibilities</h2>
+      <ul class="work-list">
+        <li>Core Gameplay Design</li>
+        <li>Art Concept Design</li>
+        <li>Character 2D Art</li>
+      </ul>
+    </section>
+
+<!-- 系统拆解 -->
+<section>
+  <h2 class="section-title">System Breakdown</h2>
+  <div class="system-list">
+
+    <!-- 1. Core Gameplay Loop -->
+    <div class="system-card" onclick="toggleCard(this)">
+      <div class="system-header">
+        <h4>Core Gameplay Loop</h4>
+        <span class="toggle">+</span>
+      </div>
+      <div class="system-body">
+        <p>New Game / Continue Game → Explore indoor and outdoor areas of Scab Valley → Collect items → Craft potions →
+          Drink
+          potions to trigger metamorphosis → Trigger key story beats → Ending evaluation</p>
+        <p>First Run: First encounter with Zhuge Lan → Trigger the Little Girl event (hard-locked cutscene) → Unlock
+          contextual
+          dialogues at each node → Achieve the initial ending → Zhuge Lan’s Resolution</p>
+        <p>Late Playthroughs (2+ Runs): Zhuge Lan appears with a wheelchair → The Little Girl event loops infinitely
+          with variant
+          versions across different routes → Multi-node branching dialogues → Story convergence leading to final endings
+        </p>
+        <p>Special Trigger Node: After the 30th potion consumption — regardless of potion type, all default node
+          storylines are
+          fully overwritten by exclusive alternate content. Zhuge Lan’s hidden belongings are exposed, revealing a
+          mysterious
+          viral-blocking injection. After Aunt Hong administers the injection to the little girl, she unexpectedly
+          achieves a
+          complete recovery, birthing a miracle ending defined by negative negation yields positive.</p>
+      </div>
+    </div>
+
+    <!-- 2. Synthesis System -->
+    <div class="system-card" onclick="toggleCard(this)">
+      <div class="system-header">
+        <h4>Synthesis System</h4>
+        <span class="toggle">+</span>
+      </div>
+      <div class="system-body">
+        <p>Five Base Materials:<br>
+          A. Broken Machine Inner‑Casing (Salvaged from scrapped machinery using a screwdriver)<br>
+          B. Crystal Orb (Found on indoor desk)<br>
+          C. Machine Oil (Beside the desk)<br>
+          D. Rainwater (Collected from outdoor puddles using a vase)<br>
+          E. Inextinguishable Eerie Flame (Obtained by interacting with the eternal outdoor fire using bamboo)</p>
+        <p>Metamorphosis Stages:<br>
+          Viscus Stage (1‑6): Six basic combinations: AB, AC, AE, BC, BD, BE<br>
+          Blood Stage (1‑9): Introduces a second secondary material, corresponding to more complex visceral forms<br>
+          Bone Stage (1‑9): Form leans toward skeletal structures<br>
+          Figure Stage (1‑9): Form leans toward humanoid or bestial shapes<br>
+          Face Stage (Final): Final forms including Human (Yuanjun), Sealion, Jiangtun, and others</p>
+        <p>Root‑Tree Mechanic: Recipe progress carries over within the Root‑Tree. On the N‑th playthrough, players may
+          skip
+          previously explored paths to directly craft compounds. The protagonist has a limited bodily load capacity and
+          cannot
+          keep consuming potions indefinitely.</p>
+      </div>
+    </div>
+
+    <!-- 3. Codex System -->
+    <div class="system-card" onclick="toggleCard(this)">
+      <div class="system-header">
+        <h4>Codex System</h4>
+        <span class="toggle">+</span>
+      </div>
+      <div class="system-body">
+        <p>Unlock Conditions: The notebook‑skin codex unlocks after the first encounter with Zhuge Lan; the
+          wooden‑plank‑skin codex
+          unlocks upon completion of the first playthrough.</p>
+        <p>Notebook Skin: Zhuge Lan uses a Polaroid camera to take photos documenting the protagonist’s forms. The
+          notebook sits on
+          the windowsill and can be viewed at any time. It contains five pages, with one new entry added after each
+          metamorphosis.
+          Once Zhuge Lan departs, the hand icon in the top‑left corner disappears.</p>
+        <p>Wooden Board Skin: The NPC interaction window is redesigned with a door curtain style. Players can enter the
+          codex
+          interface by tapping the codex pattern on the door. The wooden board can be pushed upward to reveal the NPC
+          interaction
+          window. When flipping pages, codex content may appear on either the left or right side of the screen.</p>
+        <p>Potion Marking Function:<br>
+          Players can drag potion bottles to the dashed areas on corresponding codex pages for temporary marking, which
+          displays
+          "Name?". When a potion correctly matches and successfully triggers a metamorphosis, a confirmation animation
+          will play,
+          featuring flickering thin wing effects, erasure of the question mark, and a checkmark confirmation icon.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- 问题与改进 -->
+    <section>
+      <h2 class="section-title">Problems & Future Improvements</h2>
+      <ul class="problems-list">
+        <li>Lacking prior experience in collaborative team‑based projects, major flaws emerged in project management. Development
+        productivity was low, and miscommunication frequently occurred, as team members struggled to articulate ideas
+        accurately.</li>
+        <li>Severe creative‑concept disagreements arose with the lead writer, halting further project progress. A potential restart
+        will be considered only if future circumstances permit purchasing the copyright for the lead writer’s creative
+        contributions.</li>
+      </ul>
+    </section>
+
+    <!-- 开发时间线 -->
+    <section>
+      <h2 class="section-title">Development Timeline</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2024: Project Initiated</div>
+          <div class="tl-event">Initial concept drafting & team formation</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Jul, 2025: Submitted for Tuokaixin Game Jam</div>
+          <div class="tl-event">Submitted prototype build for the game jam event</div>
+        </div>
+        <div class="tl-item pending-item">
+          <div class="tl-year">[Future]: Repurchase copyright assets and resume development</div>
+          <div class="tl-event">Pending</div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer 页脚 -->
+  <footer>
+    <p>© 2026 Jiayan Gong (Tox) · <a href="index.html">Back to Portfolio</a></p>
+  </footer>
+
+  <script>
+    /* ── 手风琴收折逻辑 ── */
+    function toggleCard(card) {
+      card.classList.toggle('open');
+    }
+
+    /* ── 图片轮播逻辑 ── */
+    let currentSlide = 0;
+    const slidesContainer = document.getElementById('carouselSlides');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById('carouselDots');
+
+    // 动态生成圆点指示器
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.onclick = () => goToSlide(index);
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateCarousel() {
+      slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function moveSlide(direction) {
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+  </script>
+
+</body>
+</html>
