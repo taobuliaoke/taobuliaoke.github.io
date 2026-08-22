@@ -1,19 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jiayan Gong - Portfolio</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f0f11; color: #ececec; line-height: 1.6; padding: 2rem; }
-    
-    header { max-width: 900px; margin: 0 auto 2rem; text-align: center; }
-    h1 { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
-    p.subtitle { font-size: 1.1rem; color: #a0a0a0; }
-    .socials { margin-top: 1rem; }
-    .socials a { color: #8a8a8a; margin: 0 10px; text-decoration: none; transition: color 0.2s; }
-    .socials a:hover { color: #fff; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f0f11;
+      color: #ececec;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: #a0a0a0;
+    }
+
+    .socials {
+      margin-top: 1rem;
+    }
+
+    .socials a {
+      color: #8a8a8a;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .socials a:hover {
+      color: #fff;
+    }
 
     /* 通用板块标题与副标题样式 */
     .section-title {
@@ -53,7 +90,7 @@
       border: 1px solid #2a2a30;
       border-radius: 12px;
       padding: 1.5rem;
-      margin-top: 1rem; /* 增加与外部标题的间距 */
+      margin-top: 1rem;
     }
 
     .bio-text {
@@ -62,7 +99,7 @@
       flex-direction: column;
       justify-content: center;
     }
-    
+
     .bio-text p {
       font-size: 0.95rem;
       color: #b0b0b0;
@@ -83,6 +120,7 @@
       overflow: hidden;
       background: #25252b00;
     }
+
     .photo-box img {
       width: 100%;
       height: 200px;
@@ -122,6 +160,47 @@
       color: #0f0f11;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(77, 166, 255, 0.3);
+    }
+
+/* ----------------------------------------------------
+       构成我的九款游戏 (9 Games That Made Me) 样式
+    ---------------------------------------------------- */
+    .favorite-games-section {
+      max-width: 900px; /* 保持与 About Me 一致的宽度，确保标题左对齐 */
+      margin: 0 auto 3rem;
+    }
+
+    .nine-grid {
+      max-width: 500px; /* 控制九宫格本身的尺寸，数值越小格子越小 */
+      margin: 0 auto;   /* 让九宫格在板块内居中显示 */
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+      background: #1a1a1e;
+      border: 1px solid #2a2a30;
+      border-radius: 16px;
+      padding: 0.6rem;
+    }
+    .grid-item {
+      aspect-ratio: 3 / 4;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #141418;
+      border: 1px solid #2d2d38;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-3px);
+      border-color: #4da6ff;
+      box-shadow: 0 4px 12px rgba(77, 166, 255, 0.2);
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* 我能做什么 区块 */
@@ -195,7 +274,6 @@
       border-color: #3f3f4a;
     }
 
-    /* 左侧媒体展示区（视频/图片） */
     .project-media {
       flex: 1;
       min-width: 300px;
@@ -207,7 +285,6 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      aspect-ratio:flex-start;
     }
 
     .project-media img {
@@ -224,7 +301,6 @@
       border: none;
     }
 
-    /* 右侧项目详情信息 */
     .project-info {
       flex: 1.2;
       display: flex;
@@ -242,23 +318,25 @@
       margin-bottom: 0.5rem;
     }
 
-    /* 状态标签（开发中 / 已停止 / 已发布） */
     .status-badge {
       padding: 0.2rem 0.6rem;
       border-radius: 12px;
       font-size: 0.75rem;
       font-weight: 600;
     }
+
     .status-in-progress {
       background: #4da6ff26;
       color: #4da6ff;
       border: 1px solid rgba(77, 166, 255, 0.3);
     }
-     .status-tbc {
+
+    .status-tbc {
       background: rgba(235, 183, 87, 0.15);
       color: #ebb257;
       border: 1px solid rgba(235, 210, 87, 0.3);
     }
+
     .status-stopped {
       background: rgba(235, 87, 87, 0.15);
       color: #eb5757;
@@ -271,12 +349,14 @@
       font-weight: 700;
       margin-bottom: 0.6rem;
     }
+
     .project-title-EN {
       font-size: 1.6rem;
       color: #fcfcfc;
       font-weight: 650;
       margin-bottom: 0.6rem;
     }
+
     .project-desc {
       font-size: 0.9rem;
       color: #aaa;
@@ -284,7 +364,6 @@
       margin-bottom: 1rem;
     }
 
-    /* 职责 / 工具 列表 */
     .project-details-grid {
       display: flex;
       flex-direction: column;
@@ -308,7 +387,6 @@
       color: #8a8a93;
     }
 
-    /* 标签胶囊 */
     .project-tags {
       display: flex;
       flex-wrap: wrap;
@@ -325,7 +403,6 @@
       font-size: 0.78rem;
     }
 
-    /* 项目详情按钮 */
     .btn-detail {
       display: inline-block;
       align-self: flex-start;
@@ -351,19 +428,28 @@
       .profile-section {
         flex-direction: column-reverse;
       }
+
       .profile-side {
         width: 100%;
       }
+
       .project-card {
         flex-direction: column;
       }
+
       .project-media {
         width: 100%;
         min-width: 100%;
       }
+
+      .nine-grid {
+        gap: 0.5rem;
+        padding: 0.8rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- 顶部个人名片 -->
@@ -390,7 +476,8 @@
           <span class="highlight-tag">Godot Developer</span>
         </div>
         <p>
-          Born in 2001, I graduated from the Printmaking Program at Sichuan Fine Arts Institute in 2014. As of 2026, I am based in Kunming, Yunnan, where I work as a game producer and create indie games with my partner.
+          Born in 2001, I graduated from the Printmaking Program at Sichuan Fine Arts Institute in 2014. As of 2026, I
+          am based in Kunming, Yunnan, where I work as a game producer and create indie games with my partner.
         </p>
       </div>
 
@@ -405,16 +492,35 @@
     </div>
   </section>
 
+  <!-- 构成我的九款游戏 (9 Games That Made Me) 板块 -->
+  <section class="favorite-games-section">
+    <h2 class="section-title">9 Games That Made Me</h2>
+    <p class="section-subtitle">Nine Games That Shaped Me · Works That Influenced My Game Creation</p>
+
+    <div class="nine-grid">
+      <div class="grid-item"><img src="assets/img/made/1.jpg" alt="Game 1"></div>
+      <div class="grid-item"><img src="assets/img/made/2.jpg" alt="Game 2"></div>
+      <div class="grid-item"><img src="assets/img/made/3.jpg" alt="Game 3"></div>
+      <div class="grid-item"><img src="assets/img/made/4.jpg" alt="Game 4"></div>
+      <div class="grid-item"><img src="assets/img/made/5.jpg" alt="Game 5"></div>
+      <div class="grid-item"><img src="assets/img/made/6.jpg" alt="Game 6"></div>
+      <div class="grid-item"><img src="assets/img/made/7.jpg" alt="Game 7"></div>
+      <div class="grid-item"><img src="assets/img/made/8.jpg" alt="Game 8"></div>
+      <div class="grid-item"><img src="assets/img/made/9.jpg" alt="Game 9"></div>
+    </div>
+  </section>
+
   <!-- 我能做什么 (What I Can Do) 区块 -->
   <section class="services-section">
     <h2 class="section-title">What I Can Do</h2>
-    
+
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">🎮</div>
         <h3 class="service-title">Game Design & Producing</h3>
         <p class="service-desc">
-          Full-cycle indie game development and project execution with Godot Engine, including gameplay mechanics design, level construction, project scheduling, and cross-functional team communication and collaboration.
+          Full-cycle indie game development and project execution with Godot Engine, including gameplay mechanics
+          design, level construction, project scheduling, and cross-functional team communication and collaboration.
         </p>
       </div>
 
@@ -422,7 +528,8 @@
         <div class="service-icon">🎨</div>
         <h3 class="service-title">Visual & Art Concept</h3>
         <p class="service-desc">
-          Leveraging a fine arts background from a top art academy, I provide distinctive art direction and stylization, 2D concept design, and character and environment illustration for game projects.
+          Leveraging a fine arts background from a top art academy, I provide distinctive art direction and stylization,
+          2D concept design, and character and environment illustration for game projects.
         </p>
       </div>
 
@@ -430,30 +537,31 @@
         <div class="service-icon">📜</div>
         <h3 class="service-title">Local Narrative Design</h3>
         <p class="service-desc">
-          Dedicated to humanistic narratives rooted in Chinese local culture, she specializes in integrating traditional cultural elements with modern game interactivity and seamlessly blending tradition and contemporary sensibilities. Her creative practice centers on the gamified representation and artistic adaptation of lived experiences in modern China.
+          Dedicated to humanistic narratives rooted in Chinese local culture, she specializes in integrating traditional
+          cultural elements with modern game interactivity and seamlessly blending tradition and contemporary
+          sensibilities. Her creative practice centers on the gamified representation and artistic adaptation of lived
+          experiences in modern China.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ----------------------------------------------------
-       往期作品回顾 (Portfolio Showcase)
-  ---------------------------------------------------- -->
-  <section class="portfolio-section">
+  <!-- 往期作品回顾 (Portfolio Showcase) -->
+  <section class="portfolio-section" id="portfolio">
     <h2 class="section-title">Projects</h2>
-    <p class="section-subtitle">These projects collectively showcase my competencies in game production, art design, narrative design, and game engine development.</p>
+    <p class="section-subtitle">These projects collectively showcase my competencies in game production, art design,
+      narrative design, and game engine development.</p>
 
     <div class="project-list">
-      
-      <!-- 项目 1：带 Bilibili / 视频外链预览示例 -->
-      <article class="project-card">
-        <!-- 左侧：视频外链嵌入 -->
+
+      <!-- 项目 1 -->
+      <article class="project-card" id="project-yhx">
         <div class="project-media">
-          <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116793146345655&bvid=BV1np7K6YETz&cid=39313999923&p=1" 
-          scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+          <iframe
+            src="//player.bilibili.com/player.html?isOutside=true&aid=116793146345655&bvid=BV1np7K6YETz&cid=39313999923&p=1&autoplay=0"
+            scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
         </div>
 
-        <!-- 右侧：项目信息 -->
         <div class="project-info">
           <div>
             <div class="project-meta-top">
@@ -464,7 +572,8 @@
             <h3 class="project-title">荧惑仙</h3>
             <h3 class="project-title-EN">YingHuoXian: The Mars Wraith</h3>
             <p class="project-desc">
-              A Godot‑built game prototype in the vein of The Case of the Golden Idol, blending a Late‑Qing historical setting with sci‑fi and lesbian narrative themes.
+              A Godot‑built game prototype in the vein of The Case of the Golden Idol, blending a Late‑Qing historical
+              setting with sci‑fi and lesbian narrative themes.
             </p>
 
             <div class="project-details-grid">
@@ -492,8 +601,8 @@
         </div>
       </article>
 
-      <!-- 项目 2：没有视频外链，放图片示例 -->
-      <article class="project-card">
+      <!-- 项目 2 -->
+      <article class="project-card" id="project-xjg">
         <div class="project-media">
           <img src="assets/img/xjg_cover.jpg" alt="游戏项目 / 蛾蝶变">
         </div>
@@ -508,9 +617,12 @@
             <h3 class="project-title">血痂谷</h3>
             <h3 class="project-title-EN">Crust‑Blood Valley</h3>
             <p class="project-desc">
-                Sealed off from the outside world, Scab Valley is plagued by a mysterious endemic disease. Players take on the role of
-                an experimentally modified Chimera. By concocting special potions through the Dream Machine, you gradually regain your
-                human form. Through repeated transformations and metamorphoses, you uncover the buried truth of your origin.
+              Sealed off from the outside world, Scab Valley is plagued by a mysterious endemic disease. Players take on
+              the role of
+              an experimentally modified Chimera. By concocting special potions through the Dream Machine, you gradually
+              regain your
+              human form. Through repeated transformations and metamorphoses, you uncover the buried truth of your
+              origin.
             </p>
 
             <div class="project-details-grid">
@@ -528,15 +640,15 @@
               <span class="p-tag">Unity</span>
               <span class="p-tag">2D Art</span>
               <span class="p-tag">Chinese Wasteland Sci-Fi</span>
-           
             </div>
           </div>
 
           <a href="Project_Details_xjg.html" class="btn-detail">Project Details</a>
         </div>
       </article>
-      <!-- 项目 3：没有视频外链，放图片示例 -->
-      <article class="project-card">
+
+      <!-- 项目 3 -->
+      <article class="project-card" id="project-edb">
         <div class="project-media">
           <img src="assets/img/edb.jpg" alt="游戏项目 / 蛾蝶变">
         </div>
@@ -551,7 +663,9 @@
             <h3 class="project-title">蛾蝶变</h3>
             <h3 class="project-title-EN">Moth‑Butterfly Metamorphosis</h3>
             <p class="project-desc">
-            A mild puzzle narrative game with sci-fi elements, set in China’s urban-rural fringe of 2010. Waking up in his hometown after a decade of absence, the 30-year-old protagonist finds the familiar district shrouded in uncanny anomalies.
+              A mild puzzle narrative game with sci-fi elements, set in China’s urban-rural fringe of 2010. Waking up in
+              his hometown after a decade of absence, the 30-year-old protagonist finds the familiar district shrouded
+              in uncanny anomalies.
             </p>
 
             <div class="project-details-grid">
@@ -580,4 +694,5 @@
   </section>
 
 </body>
+
 </html>
