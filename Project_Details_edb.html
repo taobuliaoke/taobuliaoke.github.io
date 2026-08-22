@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蛾蝶变 · Project Details - Jiayan Gong (Tox)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0f0f11;
+            --card-bg: #141418;
+            --card-alt: #1a1a1e;
+            --border: #2a2a30;
+            --border-hover: #3f3f4a;
+            --text-main: #ececec;
+            --text-muted: #8a8a93;
+            --text-sub: #a0a0a0;
+            --accent: #4da6ff;
+            --tag-bg: #1f1f26;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        /* ── Header 导航 ── */
+        header {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.2rem;
+        }
+
+        .nav-brand a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            transition: opacity 0.2s;
+        }
+
+        .breadcrumb:hover {
+            opacity: 0.8;
+        }
+
+        /* ── 标题与 KV 展示区 ── */
+        h1.project-title {
+            font-size: 2.3rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* KV 独立大图展示区 */
+        .kv-banner {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .kv-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .project-desc {
+            font-size: 0.98rem;
+            color: #b0b0b0;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── Tag Capsules ── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .highlight-tag {
+            background: rgba(77, 166, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(77, 166, 255, 0.4);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .p-tag {
+            background: var(--tag-bg);
+            color: #bbb;
+            border: 1px solid #2d2d38;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.82rem;
+        }
+
+        /* ── 轮播图区域 ── */
+        .carousel-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 3rem;
+            user-select: none;
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 15, 17, 0.6);
+            color: #fff;
+            border: 1px solid var(--border);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+
+        .carousel-btn.prev {
+            left: 16px;
+        }
+
+        .carousel-btn.next {
+            right: 16px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ── Sections ── */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            background: var(--card-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-value {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .note-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.2rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header 导航 -->
+    <header>
+        <div class="nav-brand"><a href="index.html">Tox</a></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://github.com/taobuliaoke" target="_blank">GitHub</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="breadcrumb">← Back to Projects</a>
+
+        <!-- 项目主标题与英文名 -->
+        <h1 class="project-title">蛾蝶变</h1>
+        <p class="project-subtitle">Moth‑Butterfly Metamorphosis</p>
+
+        <!-- 中英文名下方：引用单张 KV 大图 -->
+        <div class="kv-banner">
+            <img src="assets/img/edb.jpg" alt="Moth-Butterfly Metamorphosis Key Visual">
+        </div>
+
+        <!-- 项目描述 -->
+        <p class="project-desc">
+            A mild puzzle narrative game with sci-fi elements, set in China’s urban-rural fringe of 2010. Waking up in
+            his hometown after a decade of absence, the 30-year-old protagonist finds the familiar district shrouded in
+            uncanny anomalies.
+        </p>
+
+        <!-- 标签区域 -->
+        <div class="tags">
+            <span class="highlight-tag">RPG Maker</span>
+            <span class="highlight-tag">2D Art</span>
+            <span class="p-tag">Visuals of China’s urban‑rural fringe</span>
+        </div>
+
+        <!-- 多图轮播展示区 (保留的唯一图片列表) -->
+        <div class="carousel-wrap">
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+
+            <div class="carousel-slides" id="carouselSlides">
+                <div class="carousel-slide"><img src="assets/img/edb/1.jpg" alt="Slide 1"></div>
+                <div class="carousel-slide"><img src="assets/img/edb/2.jpg" alt="Slide 2"></div>
+                <div class="carousel-slide"><img src="assets/img/edb/3.jpg" alt="Slide 3"></div>
+                <div class="carousel-slide"><img src="assets/img/edb/4.jpg" alt="Slide 1"></div>
+                <div class="carousel-slide"><img src="assets/img/edb/5.jpg" alt="Slide 2"></div>
+                <div class="carousel-slide"><img src="assets/img/edb/6.jpg" alt="Slide 3"></div>
+                <div class="carousel-slide"><img src="assets/img/edb/7.jpg" alt="Slide 3"></div>
+            </div>
+
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+
+        <!-- 项目概述信息组 -->
+        <section>
+            <h2 class="section-title">Overview</h2>
+
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <div class="meta-label">Role</div>
+                    <div class="meta-value">Personal Project</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Tools</div>
+                    <div class="meta-value">Photoshop, CSP, RPG Maker</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Timeline</div>
+                    <div class="meta-value">2024 · Graduation Project of Bachelor’s Degree</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Resolution</div>
+                    <div class="meta-value">1600 × 900</div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                Moth‑Butterfly Metamorphosis | Undergraduate Grad‑Design Prototype
+                Early playable prototype. Development on hold, planned for future resume after asset integration
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Jiayan Gong (Tox) · <a href="index.html">Back to Portfolio</a></p>
+    </footer>
+
+    <script>
+        /* ── 轮播逻辑 ── */
+        let currentSlide = 0;
+        const slidesContainer = document.getElementById('carouselSlides');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(index);
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateCarousel() {
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+    </script>
+
+</body>
+
+</html>
